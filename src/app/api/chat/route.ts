@@ -134,6 +134,7 @@ export async function POST(req: Request) {
       apiKey: apiKey ?? "",
     });
     console.log("options", chatOptions);
+
     const result = await streamText({
       model: customOpenai(chatOptions.selectedModel),
       messages: formattedMessages,
@@ -141,6 +142,7 @@ export async function POST(req: Request) {
       maxTokens: chatOptions.maxTokens,
       topP: chatOptions.topP,
       topK: chatOptions.topK,
+      // repeat_Penalty: chatOptions.repeatPenalty,
       // async onFinish({ text, toolCalls, toolResults, usage, finishReason }) {
       //   // implement your own logic here, e.g. for storing messages
       //   // or recording token usage
@@ -150,6 +152,7 @@ export async function POST(req: Request) {
     console.log("maxTokens", chatOptions.maxTokens);
     console.log("topP", chatOptions.topP);
     console.log("topK", chatOptions.topK);
+    console.log("Penality_Repeat", chatOptions.repeatPenalty);
     // Respond with the stream
     return result.toAIStreamResponse();
 

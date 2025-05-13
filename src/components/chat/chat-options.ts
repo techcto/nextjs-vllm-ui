@@ -5,4 +5,5 @@ export interface ChatOptions {
   maxTokens?: number;
   topP?: number;
   topK?: number;
+//   RepeatPenalty?: number;
 }

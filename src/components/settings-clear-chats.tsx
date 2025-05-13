@@ -18,7 +18,6 @@ import { DialogHeader } from "./ui/dialog";
 export default function ClearChatsButton() {
   const hasMounted = useHasMounted();
   const router = useRouter();
-
   if (!hasMounted) {
     return null;
   }
