@@ -133,7 +133,7 @@ export async function POST(req: Request) {
       baseUrl: baseUrl + "/v1",
       apiKey: apiKey ?? "",
     });
-    // console.log("options", chatOptions);
+    console.log("options", chatOptions);
     const result = await streamText({
       model: customOpenai(chatOptions.selectedModel),
       messages: formattedMessages,
@@ -146,8 +146,10 @@ export async function POST(req: Request) {
       //   // or recording token usage
       // },
     });
-    // console.log("temperature", chatOptions.temperature);
-    // console.log("maxTokens", chatOptions.maxTokens);
+    console.log("temperature", chatOptions.temperature);
+    console.log("maxTokens", chatOptions.maxTokens);
+    console.log("topP", chatOptions.topP);
+    console.log("topK", chatOptions.topK);
     // Respond with the stream
     return result.toAIStreamResponse();
 
