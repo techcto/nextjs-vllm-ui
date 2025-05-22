@@ -5,7 +5,7 @@
 </div>
 
 <h1 align="center">
-  Fully-featured & beautiful web interface for vLLM & Ollama
+  Fully-featured & beautiful web interface for vLLM, Ollama and Llama.cpp
 </h1>
 
 Get up and running with Large Language Models **quickly**, **locally** and even **offline**.
@@ -30,8 +30,17 @@ https://github.com/jakobhoeg/nextjs-ollama-llm-ui/assets/114422072/08eaed4f-9deb
 
 To use the web interface, these requisites must be met:
 
-1. Download [vLLM](https://docs.vllm.ai/en/latest/) and have it running. Or run it in a Docker container. 
-2. [Node.js](https://nodejs.org/en/download) (18+), [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) and [yarn](https://classic.yarnpkg.com/lang/en/docs/install/#mac-stable) is required. 
+1. Have an LLM backend running, for example:
+   - [vLLM](https://docs.vllm.ai/en/latest/)
+   - [Ollama](https://ollama.ai)
+   - [Llama.cpp](https://github.com/ggerganov/llama.cpp)
+     ```bash
+     git clone https://github.com/ggerganov/llama.cpp.git
+     cd llama.cpp
+     make server
+     ./server -m /path/to/model --host 0.0.0.0 --port 8000
+     ```
+2. [Node.js](https://nodejs.org/en/download) (18+), [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) and [yarn](https://classic.yarnpkg.com/lang/en/docs/install/#mac-stable) is required.
 
 # Usage 🚀
 
@@ -44,6 +53,11 @@ docker run --rm -d -p 3000:3000 -e VLLM_URL=http://host.docker.internal:8000 ghc
 If you're using Ollama, you need to set the `VLLM_MODEL`:
 ```
 docker run --rm -d -p 3000:3000 -e VLLM_URL=http://host.docker.internal:11434 -e VLLM_TOKEN_LIMIT=8192 -e VLLM_MODEL=llama3 ghcr.io/yoziru/nextjs-vllm-ui:latest
+```
+
+If you're using Llama.cpp, start the server and point the UI at it:
+```
+docker run --rm -d -p 3000:3000 -e VLLM_URL=http://host.docker.internal:8000 ghcr.io/yoziru/nextjs-vllm-ui:latest
 ```
 
 If your server is running on a different IP address or port, you can use the `--network host` mode in Docker, e.g.:
