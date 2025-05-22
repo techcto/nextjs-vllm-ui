@@ -95,9 +95,9 @@ const formatMessages = (
   }
 
   // remove the middle messages until the token count is below the limit
-  while (tokenCount > tokenLimitRemaining) {
-    const middleMessageIndex = Math.floor(messages.length / 2);
-    const middleMessageTokens = messagesTokenCounts[middleMessageIndex];
+  while (tokenCount > tokenLimitRemaining && mappedMessages.length > 0) {
+    const middleMessageIndex = Math.floor(mappedMessages.length / 2);
+    const middleMessageTokens = messagesTokenCounts[middleMessageIndex] ?? 0;
     mappedMessages.splice(middleMessageIndex, 1);
     messagesTokenCounts.splice(middleMessageIndex, 1);
     tokenCount -= middleMessageTokens;
